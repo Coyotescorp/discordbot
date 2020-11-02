@@ -4,6 +4,8 @@ const config = require('./config.json');
 const prefix = config.prefix;
 const color = config.color;
 const client = new Discord.Client();
+const verify = message.guild.roles.cache.get('761681820735373322');
+const boy = message.guild.roles.cache.get('772560917690974259');
 const embed = new Discord.MessageEmbed({
     title: 'WERYFIKACJA',
     description: 'Aby odblokować podstawowe uprawnienia użytkownika które pozwolą ci między innymi pisać na kanale #general,\n' +
@@ -23,7 +25,7 @@ const embed2 = new Discord.MessageEmbed({
         ' 🤍 - Valorant\n' +
         ' 💚 - Minecraft\n' +
         ' 💙 - League of Legends\n' +
-        '🐲 - ARK\n' +
+        ' 🐲 - ARK\n' +
         ' ❤ - Metin2',
 
 }).setColor(color);
@@ -65,72 +67,76 @@ client.on('ready', () => {
     console.log('I am ready!');
     client.channels.cache.get('753313118305779839').send(embed).then(sentembed => sentembed.react('✅'));
     client.channels.cache.get('766765358144421899').send(embed1).then(sentembed1 => {
-        sentembed1.react('♂')
-        sentembed1.react('♀')
+        sentembed1.react('♂').catch(console.error);
+        sentembed1.react('♀').catch(console.error);
     });
     client.channels.cache.get('766765358144421899').send(embed2).then(sentembed2 => {
-        sentembed2.react('🧡')
-        sentembed2.react('🤎')
-        sentembed2.react('🤍')
-        sentembed2.react('💚')
-        sentembed2.react('💙')
-        sentembed2.react('🐲')
-        sentembed2.react('❤')
+        sentembed2.react('🧡').catch(console.error);
+        sentembed2.react('🤎').catch(console.error);
+        sentembed2.react('🤍').catch(console.error);
+        sentembed2.react('💚').catch(console.error);
+        sentembed2.react('💙').catch(console.error);
+        sentembed2.react('🐲').catch(console.error);
+        sentembed2.react('❤').catch(console.error);
     });
     client.channels.cache.get('766765358144421899').send(embed3).then(sentembed3 => {
-        sentembed3.react('🐶')
-        sentembed3.react('🐱')
-        sentembed3.react('🐭')
-        sentembed3.react('🐹')
-        sentembed3.react('🐰')
-        sentembed3.react('🦊')
-        sentembed3.react('🐻')
-        sentembed3.react('🐼')
-        sentembed3.react('🐨')
-        sentembed3.react('🐯')
-        sentembed3.react('🦁')
-        sentembed3.react('🐮')
-        sentembed3.react('🐷')
-        sentembed3.react('🐸')
-        sentembed3.react('🐵')
-        sentembed3.react('🐔')
+        sentembed3.react('🐶').catch(console.error);
+        sentembed3.react('🐱').catch(console.error);
+        sentembed3.react('🐭').catch(console.error);
+        sentembed3.react('🐹').catch(console.error);
+        sentembed3.react('🐰').catch(console.error);
+        sentembed3.react('🦊').catch(console.error);
+        sentembed3.react('🐻').catch(console.error);
+        sentembed3.react('🐼').catch(console.error);
+        sentembed3.react('🐨').catch(console.error);
+        sentembed3.react('🐯').catch(console.error);
+        sentembed3.react('🦁').catch(console.error);
+        sentembed3.react('🐮').catch(console.error);
+        sentembed3.react('🐷').catch(console.error);
+        sentembed3.react('🐸').catch(console.error);
+        sentembed3.react('🐵').catch(console.error);
+        sentembed3.react('🐔').catch(console.error);
     });
     client.channels.cache.get('766765358144421899').send(embed4).then(sentembed4 => {
-        sentembed4.react('🇦')
-        sentembed4.react('🇧')
-        sentembed4.react('🇨')
-        sentembed4.react('🇩')
-        sentembed4.react('🇪')
-        sentembed4.react('🇫')
-        sentembed4.react('🇬')
-        sentembed4.react('🇭')
-        sentembed4.react('🇮')
+        sentembed4.react('🇦').catch(console.error);
+        sentembed4.react('🇧').catch(console.error);
+        sentembed4.react('🇨').catch(console.error);
+        sentembed4.react('🇩').catch(console.error);
+        sentembed4.react('🇪').catch(console.error);
+        sentembed4.react('🇫').catch(console.error);
+        sentembed4.react('🇬').catch(console.error);
+        sentembed4.react('🇭').catch(console.error);
+        sentembed4.react('🇮').catch(console.error);
     });
 });
-client.on('messageReactionAdd', async (reactionReaction, user) => {
+/*client.on('messageReactionAdd', async (reactionReaction, user) => {
 
     const message = reactionReaction.message;
     const verifyChannel = message.guild.channels.cache.find(c => c.name === 'rules-register');
     const member = message.guild.members.cache.get(user.id);
     if (member.user.bot) return;
-    const verify = message.guild.roles.cache.get('761681820735373322');
+
 
 
     if (reactionReaction.emoji.name === '✅' && message.channel.id === verifyChannel.id) {
         member.roles.add(verify).catch(console.error);
 
+    }else if(reactionReaction.emoji.name === '♂'&& message.channel.id === '766765358144421899'){
+        member.roles.add(boy).catch(console.error);
     }
 });
 client.on('messageReactionRemove', async (reactionReaction, user) => {
 
     const message = reactionReaction.message;
     const member = message.guild.members.cache.get(user.id);
-    if (member.user.bot) return;
-    const verify = message.guild.roles.cache.get('761681820735373322');
-    member.roles.remove(verify).catch(console.error);
-
+    if(message === embed) {
+        member.roles.remove(verify).catch(console.error);
+    }else if (message === embed1){
+       member.roles.remove(boy).catch(console.error);
+    }
 
 });
+ */
 client.on('message', message => {
     // If the message is "what is my avatar"
     switch (message.content) {
